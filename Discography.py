@@ -16,3 +16,23 @@ elif len(NaLi) == 3:
     NAME0 = (NaLi[0])+"_"+(NaLi[1])+"_"+(NaLi[2])
 else:
     NAME = NAME0[0].upper()+NAME0[1:len(NAME0)]
+
+serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=sections&disabletoc=1'
+
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+uh = urllib.request.urlopen(serviceurl1, context=ctx)
+
+data1 = uh.read().decode()
+js1 = json.loads(data1)
+
+try:
+    SectionIndex = js1['parse']['sections']
+    for element in SectionIndex:
+        for a, b in element.items():
+            if b == 'Discography':
+                index = element['index']
+except:
+    index = 0    
