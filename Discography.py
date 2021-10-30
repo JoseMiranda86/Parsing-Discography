@@ -28,3 +28,11 @@ uh = urllib.request.urlopen(serviceurl1, context=ctx)
 data1 = uh.read().decode()
 js1 = json.loads(data1)
 
+try:
+    SectionIndex = js1['parse']['sections']
+    for element in SectionIndex:
+        for a, b in element.items():
+            if b == 'Discography':
+                index = element['index']
+except:
+    index = 0
