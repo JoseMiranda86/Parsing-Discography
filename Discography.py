@@ -5,31 +5,31 @@ import webbrowser
 index = 0
 Signal = 0
 
-NAME0 = input('\nPlease provide the name of the band/singer:')
+NameArtist = input('\nPlease provide the name of the band/singer:')
 
-NaLi = NAME0.split(" ")
-if len(NaLi) == 2:
-    NAME = str.capitalize(NaLi[0])+"_"+str.capitalize(NaLi[1])
-    NAME0 = (NaLi[0])+"_"+(NaLi[1])
-elif len(NaLi) == 3:
-    NAME = str.capitalize(NaLi[0])+"_"+str.capitalize(NaLi[1])+"_"+str.capitalize(NaLi[2])
-    NAME0 = (NaLi[0])+"_"+(NaLi[1])+"_"+(NaLi[2])
+NameArtistList = NameArtist.split(" ")
+if len(NameArtistList) == 2:
+    NameURL = str.capitalize(NameArtistList[0])+"_"+str.capitalize(NameArtistList[1])
+    NameArtist = (NameArtistList[0])+"_"+(NameArtistList[1])
+elif len(NameArtistList) == 3:
+    NameURL = str.capitalize(NameArtistList[0])+"_"+str.capitalize(NameArtistList[1])+"_"+str.capitalize(NameArtistList[2])
+    NameArtist = (NameArtistList[0])+"_"+(NameArtistList[1])+"_"+(NameArtistList[2])
 else:
-    NAME = NAME0[0].upper()+NAME0[1:len(NAME0)]
+    NameURL = NameArtist[0].upper()+NameArtist[1:len(NameArtist)]
 
-serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=sections&disabletoc=1'
+ServiceURL = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NameURL+'&prop=sections&disabletoc=1'
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-uh = urllib.request.urlopen(serviceurl1, context=ctx)
+uh = urllib.request.urlopen(ServiceURL, context=ctx)
 
-data1 = uh.read().decode()
-js1 = json.loads(data1)
+Data1 = uh.read().decode()
+Jason1 = json.loads(Data1)
 
 try:
-    SectionIndex = js1['parse']['sections']
+    SectionIndex = Jason1['parse']['sections']
     for element in SectionIndex:
         for a, b in element.items():
             if b == 'Discography':
@@ -38,14 +38,14 @@ except:
     index = 0
 
 if index == 0:
-    serviceurl1 = 'https://es.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=sections&disabletoc=1'
-    uh = urllib.request.urlopen(serviceurl1, context=ctx)
+    ServiceURL = 'https://es.wikipedia.org/w/api.php?action=parse&format=json&page='+NameURL+'&prop=sections&disabletoc=1'
+    uh = urllib.request.urlopen(ServiceURL, context=ctx)
 
-    data1 = uh.read().decode()
-    js1 = json.loads(data1)
+    Data1 = uh.read().decode()
+    Jason1 = json.loads(Data1)
 
     try:
-        SectionIndex = js1['parse']['sections']
+        SectionIndex = Jason1['parse']['sections']
         for element in SectionIndex:
             for a, b in element.items():
                 if b == 'Discografía':
@@ -53,20 +53,4 @@ if index == 0:
                     Signal = -2
     except:
         index = 0
-
-if index == 0:
-    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME0+'&prop=sections&disabletoc=1'
-    uh = urllib.request.urlopen(serviceurl1, context=ctx)
-
-    data1 = uh.read().decode()
-    js1 = json.loads(data1)
-
-    try:
-        SectionIndex = js1['parse']['sections']
-        for element in SectionIndex:
-            for a, b in element.items():
-                if b == 'Discography':
-                    index = element['index']
-                    Signal = -1
-    except:
-        index = 0        
+      
