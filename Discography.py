@@ -72,14 +72,14 @@ if index == 0:
         index = 0   
 
 if index == 0:
-    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'_(band)'+'&prop=sections&disabletoc=1'
-    uh = urllib.request.urlopen(serviceurl1, context=ctx)
+    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NameURL+'_(band)'+'&prop=sections&disabletoc=1'
+    uh = urllib.request.urlopen(ServiceURL, context=ctx)
 
-    data1 = uh.read().decode()
-    js1 = json.loads(data1)
+    Data1 = uh.read().decode()
+    Jason1 = json.loads(Data1)
 
     try:
-        SectionIndex = js1['parse']['sections']
+        SectionIndex = Jason1['parse']['sections']
         for element in SectionIndex:
             for a, b in element.items():
                 if b == 'Discography':
