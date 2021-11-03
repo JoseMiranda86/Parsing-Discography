@@ -69,4 +69,21 @@ if index == 0:
                     index = element['index']
                     Signal = -1
     except:
-        index = 0      
+        index = 0   
+
+if index == 0:
+    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'_(band)'+'&prop=sections&disabletoc=1'
+    uh = urllib.request.urlopen(serviceurl1, context=ctx)
+
+    data1 = uh.read().decode()
+    js1 = json.loads(data1)
+
+    try:
+        SectionIndex = js1['parse']['sections']
+        for element in SectionIndex:
+            for a, b in element.items():
+                if b == 'Discography':
+                    index = element['index']
+                    Signal = 1
+    except:
+        index = 0           
