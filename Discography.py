@@ -89,7 +89,7 @@ if index == 0:
         index = 0           
 
 if index == 0:
-    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'_(singer)'+'&prop=sections&disabletoc=1'
+    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NameURL+'_(singer)'+'&prop=sections&disabletoc=1'
     uh = urllib.request.urlopen(serviceurl1, context=ctx)
 
     Data1 = uh.read().decode()
@@ -103,4 +103,43 @@ if index == 0:
                     index = element['index']
                     Signal = 2
     except:
-        index = 0        
+        index = 0      
+
+if index == 0:
+    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NameURL+'_(musician)'+'&prop=sections&disabletoc=1'
+    uh = urllib.request.urlopen(serviceurl1, context=ctx)
+
+    Data1 = uh.read().decode()
+    Jason1 = json.loads(Data1)
+
+    try:
+        SectionIndex = Jason1['parse']['sections']
+        for element in SectionIndex:
+            for a, b in element.items():
+                if b == 'Discography':
+                    index = element['index']
+                    Signal = 3
+    except:
+        index = 0
+
+if index == 0:
+    NAME1 = NameURL.upper()
+    serviceurl1 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME1+'&prop=sections&disabletoc=1'
+    uh = urllib.request.urlopen(serviceurl1, context=ctx)
+
+    Data1 = uh.read().decode()
+    Jason1 = json.loads(Data1)
+    for x,y in Jason1.items():
+        if x == 'error':
+            print('\nName could not been found')
+            exit()
+
+    SectionIndex = Jason1['parse']['sections']
+    for element in SectionIndex:
+        for a, b in element.items():
+            if b == 'Discography':
+                index = element['index']
+                Signal = 4
+    if len(SectionIndex) < 1:
+            print('\nName could not been found')
+            exit()
