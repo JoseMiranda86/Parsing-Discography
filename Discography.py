@@ -144,5 +144,29 @@ if index == 0:
             print('\nName could not been found')
             exit()
 
+if Signal == -2:
+    serviceurl2 = 'https://es.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=wikitext&section='+str(index)+'&disabletoc=1'
+elif Signal == -1:
+    serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME0+'&prop=wikitext&section='+str(index)+'&disabletoc=1'
+elif Signal == 0:
+    serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=wikitext&section='+str(index)+'&disabletoc=1'
+    #serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=text&section='+index+'&disabletoc=1'
+elif Signal == 1:
+    serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'_(band)'+'&prop=wikitext&section='+index+'&disabletoc=1'
+elif Signal == 2:
+    serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'_(singer)'+'&prop=wikitext&section='+index+'&disabletoc=1'
+elif Signal == 3:
+    serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'_(musician)'+'&prop=wikitext&section='+index+'&disabletoc=1'
+else:
+    serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME1+'&prop=wikitext&section='+index+'&disabletoc=1'
 
+
+uh2 = urllib.request.urlopen(serviceurl2, context=ctx)
+data2 = uh2.read().decode()
+js2 = json.loads(data2)
+
+#print(js1)
+#print('\n')
+#print(js2)
+print('\n')
 
