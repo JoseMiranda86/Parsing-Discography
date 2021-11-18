@@ -160,4 +160,44 @@ elif Signal == 3:
 else:
     serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME1+'&prop=wikitext&section='+index+'&disabletoc=1'
 
+uh2 = urllib.request.urlopen(serviceurl2, context=ctx)
+data2 = uh2.read().decode()
+js2 = json.loads(data2)
 
+#print(js1)
+#print('\n')
+#print(js2)
+print('\n')
+
+SectionIndex2 = js2['parse']['wikitext']
+#print('\n',SectionIndex2['*'])
+x = SectionIndex2['*']
+list = x.split("*")
+list2 = list[0].split('\n')
+#print(list2)
+for word in list2:
+    if word.startswith('{| '):
+        if Signal == -1:
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME0+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME0+'#Discography','\n')
+            exit()
+        if Signal == 0:
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'#Discography','\n')
+            exit()
+        elif Signal == 1:
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'_(band)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'_(band)'+'#Discography','\n')
+            exit()
+        elif Signal == 2:
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'_(singer)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'_(singer)'+'#Discography','\n')
+            exit()
+        elif Signal == 3:
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'_(musician)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'_(musician)'+'#Discography','\n')
+            exit()
+        else:
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME1+'_(band)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME1+'_(singer)'+'#Discography','\n')
+            exit()
