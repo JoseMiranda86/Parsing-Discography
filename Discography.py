@@ -202,3 +202,21 @@ for word in list2:
             print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME1+'_(band)'+'#Discography')
             webbrowser.open('https://en.wikipedia.org/wiki/'+NAME1+'_(singer)'+'#Discography','\n')
             exit()
+
+print('\n', 'DISCOGRAPHY','\n')
+count = 0
+for album in list:
+    if album.startswith("''") or album.startswith(" ''") or album.startswith(" "):
+        count = count + 1
+        album2 = album.rstrip()
+        album3 = album2.strip()
+        pos = album3.find('\n')
+        pos2 = album3.find('<ref>')
+        if pos == -1 and pos2 == -1:
+            print(count,'-',album3)
+        elif pos != -1:
+            print(count,'-',album3[0:pos])
+        else:
+            print(count,'-',album3[0:pos2])
+
+print('\n')
