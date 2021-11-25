@@ -145,7 +145,7 @@ if index == 0:
             exit()
 
 if Signal == -2:
-    serviceurl2 = 'https://es.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME+'&prop=wikitext&section='+str(index)+'&disabletoc=1'
+    serviceurl2 = 'https://es.wikipedia.org/w/api.php?action=parse&format=json&page='+NameURL+'&prop=wikitext&section='+str(index)+'&disabletoc=1'
 elif Signal == -1:
     serviceurl2 = 'https://en.wikipedia.org/w/api.php?action=parse&format=json&page='+NAME1+'&prop=wikitext&section='+str(index)+'&disabletoc=1'
 elif Signal == 0:
@@ -179,24 +179,24 @@ list2 = list[0].split('\n')
 for word in list2:
     if word.startswith('{| '):
         if Signal == -1:
-            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME0+'#Discography')
-            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME0+'#Discography','\n')
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NameArtist+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NameArtist+'#Discography','\n')
             exit()
         if Signal == 0:
-            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'#Discography')
-            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'#Discography','\n')
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NameURL+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NameURL+'#Discography','\n')
             exit()
         elif Signal == 1:
-            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'_(band)'+'#Discography')
-            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'_(band)'+'#Discography','\n')
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NameURL+'_(band)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NameURL+'_(band)'+'#Discography','\n')
             exit()
         elif Signal == 2:
-            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'_(singer)'+'#Discography')
-            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'_(singer)'+'#Discography','\n')
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NameURL+'_(singer)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NameURL+'_(singer)'+'#Discography','\n')
             exit()
         elif Signal == 3:
-            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME+'_(musician)'+'#Discography')
-            webbrowser.open('https://en.wikipedia.org/wiki/'+NAME+'_(musician)'+'#Discography','\n')
+            print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NameURL+'_(musician)'+'#Discography')
+            webbrowser.open('https://en.wikipedia.org/wiki/'+NameURL+'_(musician)'+'#Discography','\n')
             exit()
         else:
             print('Discography available at: '+'https://en.wikipedia.org/wiki/'+NAME1+'_(band)'+'#Discography')
